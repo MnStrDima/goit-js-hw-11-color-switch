@@ -21,6 +21,7 @@ let switcherTimerId = null;
 function onColorSwitch() {
   if (!startBtnRef.disabled) {
     switcherTimerId = setInterval(() => {
+      console.log(bodyRef.style.backgroundColor);
       bodyRef.style.backgroundColor =
         colors[randomIntegerFromInterval(0, colors.length - 1)];
     }, 1000);
