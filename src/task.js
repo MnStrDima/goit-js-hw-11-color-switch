@@ -17,15 +17,25 @@ const bodyRef = document.querySelector('body');
 
 startBtnRef.addEventListener('click', onColorSwitch);
 let switcherIntervalId = null;
+let bgColor = '';
 
 function onColorSwitch() {
   if (!startBtnRef.disabled) {
     switcherIntervalId = setInterval(() => {
-      bodyRef.style.backgroundColor =
-        colors[randomIntegerFromInterval(0, colors.length - 1)];
+      checkRandomColor(0, colors.length - 1);
+      bodyRef.style.backgroundColor = bgColor;
     }, 1000);
     startBtnRef.disabled = true;
     stopBtnRef.disabled = false;
+  }
+}
+
+function checkRandomColor(min, max) {
+  const color = colors[randomIntegerFromInterval(min, max)];
+  if (color === bgColor) {
+    checkRandomColor(min, max);
+  } else {
+    bgColor = color;
   }
 }
 
