@@ -16,12 +16,11 @@ const stopBtnRef = document.querySelector('[data-action="stop"]');
 const bodyRef = document.querySelector('body');
 
 startBtnRef.addEventListener('click', onColorSwitch);
-let switcherTimerId = null;
+let switcherIntervalId = null;
 
 function onColorSwitch() {
   if (!startBtnRef.disabled) {
-    switcherTimerId = setInterval(() => {
-      console.log(bodyRef.style.backgroundColor);
+    switcherIntervalId = setInterval(() => {
       bodyRef.style.backgroundColor =
         colors[randomIntegerFromInterval(0, colors.length - 1)];
     }, 1000);
@@ -34,7 +33,7 @@ stopBtnRef.addEventListener('click', onStopColorSwitch);
 
 function onStopColorSwitch() {
   if (!stopBtnRef.disabled) {
-    clearInterval(switcherTimerId);
+    clearInterval(switcherIntervalId);
     startBtnRef.disabled = false;
     stopBtnRef.disabled = true;
   }
